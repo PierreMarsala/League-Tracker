@@ -1,0 +1,366 @@
+﻿<Window x:Class="League_Tracker.ViewModels.SummonerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:local="clr-namespace:League_Tracker.ViewModels"
+        mc:Ignorable="d"
+        Title="League tracker" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True" MouseDown="Window_MouseDown">
+
+    <!--Main window-->
+    <Border CornerRadius="10"                    
+            BorderThickness="2">
+
+        <!--Border gradiant-->
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource Border_Color1}" Offset="0"/>
+                <GradientStop Color="{StaticResource Border_Color2}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource Border_Color1}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Background color-->
+            <Border CornerRadius="10" Grid.RowSpan="5" Grid.Row="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource Background_Color1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource Background_Color2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <!--Background top color-->
+            <Border CornerRadius="8,8,0,0" Grid.Row="0" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource Border_Color1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource Border_Color2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            
+            <!--Background middle color-->
+            <Border CornerRadius="0" Grid.RowSpan="1" Grid.Row="3">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{StaticResource Border_Color2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource Border_Color1}" Offset=".5"/>
+                        <GradientStop Color="{StaticResource Border_Color2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!--Background bottom color-->
+            <Border CornerRadius="0" Grid.RowSpan="1" Grid.Row="4">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{StaticResource Border_Color2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource Border_Color1}" Offset=".85"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!--Background midle color-->
+            <Border Grid.Row="1" Grid.RowSpan="2" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource Border_Color2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource Border_Color1}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!--TOP MANAGE BAR-->
+            <StackPanel Orientation="Horizontal">
+
+                <!--League of Legend Icon-->
+                <Image x:Name="Image_Logo" Height="25" Width="25" Margin="10,0,30,0"/>
+
+                <!--Region selection-->
+                <ComboBox x:Name="Combobox_Region"
+                          VerticalAlignment="Center" Width="60"
+                          FontWeight="Medium" FontFamily="Montserrat"
+                          Margin="10,0,10,0" SelectedIndex="2">
+                          <ComboBoxItem Content="BR1"/>
+                          <ComboBoxItem Content="EUN1"/>
+                          <ComboBoxItem Content="EUW1"/>
+                          <ComboBoxItem Content="JP1"/>
+                          <ComboBoxItem Content="KR"/>
+                          <ComboBoxItem Content="LA1"/>
+                          <ComboBoxItem Content="LA2"/>
+                          <ComboBoxItem Content="NA1"/>
+                          <ComboBoxItem Content="OC1"/>
+                          <ComboBoxItem Content="PH2"/>
+                          <ComboBoxItem Content="RU"/>
+                          <ComboBoxItem Content="SG2"/>
+                          <ComboBoxItem Content="TH2"/>
+                          <ComboBoxItem Content="TR1"/>
+                          <ComboBoxItem Content="TW2"/>
+                          <ComboBoxItem Content="VN2"/>
+                </ComboBox>
+
+                <!--Summoner name-->
+                <TextBox x:Name="textbox_SummonerName" Width="200" Height="20" FontFamily="Montserrat" FontWeight="Medium"/>
+
+                <!--Region selection-->
+                <ComboBox x:Name="Combobox_Memoire"
+                           VerticalAlignment="Center" Width="15"
+                           FontWeight="Medium" FontFamily="Montserrat"
+                           Margin="0,0,10,0" SelectedIndex="0" SelectionChanged="Combobox_Memoire_SelectionChanged">
+                </ComboBox>
+
+
+                <!--Search button-->
+                <Button x:Name="btn_Search" Style="{StaticResource windowButton}"
+                    Click="btnSearch_Click" Margin="5,0,35,0">
+                    <fa:ImageAwesome Icon="Search" Foreground="{StaticResource Color1}"/>
+                </Button>
+
+                <!--Minimize button-->
+                <Button x:Name="btn_Minimize" Style="{StaticResource windowButton}"
+                    Click="btnMinimize_Click">
+                    <fa:ImageAwesome Icon="WindowMinimize" Foreground="{StaticResource Color1}"/>
+                </Button>
+
+                <!--Close button-->
+                <Button x:Name="btn_Close" Style="{StaticResource windowButton}"
+                    Click="btnClose_Click" >
+                    <fa:ImageAwesome Icon="Times" Foreground="{StaticResource Color1}"/>
+                </Button>
+            </StackPanel>
+
+            <!--PROFILE VIEW-->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!--profile view-->
+                <StackPanel Grid.Column="0">
+                    <!--Profile-->
+                    <Grid>
+                        <Rectangle RadiusX="20" RadiusY="20" Width="100" Height="100" Fill="#242424"/>
+                        <Rectangle RadiusX="20" RadiusY="20" Width="95" Height="95">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="Image_Profile" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle RadiusX="5" RadiusY="5" Width="36" Height="16" Fill="#242424" VerticalAlignment="Bottom" Margin="0,0,0,-7"/>
+                        <TextBlock x:Name="Txt_Lvl" Text="0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-7"/>
+
+                    </Grid>
+
+
+                    <!--Name-->
+                    <TextBlock x:Name="Txt_summonerName" Text="" HorizontalAlignment="Center" 
+                               Foreground="White" FontWeight="Medium" FontSize="18" FontFamily="Montserrat"
+                               Margin="10,8,10,0"/>
+
+                </StackPanel>
+
+                <!--Winstreak view-->
+                <StackPanel Grid.Column="1">
+                    <!--Wins-->
+                    <Grid Margin="0,8,0,0">
+                        <Rectangle RadiusX="2" RadiusY="2" Fill="#242424"/>
+                        <Rectangle RadiusX="2" RadiusY="2" Margin="2">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.95">
+                                    <GradientStop Offset="0" Color="{StaticResource Border_Color2}" />
+                                    <GradientStop Offset="1" Color="{StaticResource Border_Color1}" />
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock x:Name="Txt_Win" Text="Win : 0" Foreground="white" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" TextAlignment="Center"/>
+                    </Grid>
+
+                    <!--Looses-->
+                    <Grid Margin="0,20,0,0">
+                        <Rectangle RadiusX="2" RadiusY="2" Fill="#242424"/>
+                        <Rectangle RadiusX="2" RadiusY="2" Margin="2">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.95">
+                                    <GradientStop Offset="0" Color="{StaticResource Border_Color2}" />
+                                    <GradientStop Offset="1" Color="{StaticResource Border_Color1}" />
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock x:Name="Txt_Loose" Text="Loose : 0" Foreground="white" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" TextAlignment="Center" />
+                    </Grid>
+                    
+                    <!--Ratio-->
+                    <Grid Margin="0,20,0,0">
+                        <Rectangle RadiusX="2" RadiusY="2" Fill="#242424"/>
+                        <Rectangle RadiusX="2" RadiusY="2" Margin="2">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.95">
+                                    <GradientStop Offset="0" Color="{StaticResource Border_Color2}" />
+                                    <GradientStop Offset="1" Color="{StaticResource Border_Color1}" />
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock x:Name="Txt_Ratio" Text="Ratio : 0%" Foreground="White" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" TextAlignment="Center" />
+                    </Grid>
+                </StackPanel>
+
+                <!--Rank view-->
+                <StackPanel Grid.Column="2">
+
+                    <!--Icon-->
+                    <Grid>
+                        <Rectangle RadiusX="20" RadiusY="20" Width="100" Height="100" Fill="#242424"/>
+                        <Rectangle RadiusX="20" RadiusY="20" Width="95" Height="95">
+                            <Rectangle.Fill>
+                                <RadialGradientBrush Center="0.5,0.5" RadiusX="0.5" RadiusY="0.95">
+                                    <GradientStop Offset="0" Color="{StaticResource Border_Color2}" />
+                                    <GradientStop Offset="1" Color="{StaticResource Border_Color1}" />
+                                </RadialGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Image x:Name="Image_rank" Height="100" Width="100"/>
+                    </Grid>
+
+                    <!--Text-->
+                    <TextBlock x:Name="Txt_rank" Text="" HorizontalAlignment="Center" 
+                           Foreground="Gray" FontWeight="Medium" FontSize="18" FontFamily="Montserrat"
+                           Margin="10,8,10,0"/>
+
+                    <!--LP-->
+                    <TextBlock x:Name="Txt_lp" Text="" HorizontalAlignment="Center" 
+                         Foreground="white" FontWeight="Medium" FontSize="12" FontFamily="Montserrat"
+                         Margin="10,0,10,0"/>
+                </StackPanel>
+            </Grid>
+
+            <!--Mastery points-->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Champ 1 -->
+                <Grid Grid.Column="1">
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="20,15,20,15" Fill="#242424"/>
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="25,20,25,20">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="Image_Champ1" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle RadiusX="10" RadiusY="10" Margin="30,120,30,10" Fill="#242424"/>
+                    <TextBlock x:Name="Txt_champ1" Text="0 pts" Foreground="White" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" Margin="20,125,20,15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                
+                <!--Champ 2 -->
+                <Grid Grid.Column="0">
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="20,15,20,15" Fill="#242424"/>
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="25,20,25,20">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="Image_Champ2" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle RadiusX="10" RadiusY="10" Margin="30,120,30,10" Fill="#242424"/>
+                    <TextBlock x:Name="Txt_champ2" Text="0 pts" Foreground="White" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" Margin="20,125,20,15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+
+                <!--Champ 3 -->
+                <Grid Grid.Column="2">
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="20,15,20,15" Fill="#242424"/>
+                    <Rectangle RadiusX="20" RadiusY="20" Margin="25,20,25,20">
+                        <Rectangle.Fill>
+                            <ImageBrush x:Name="Image_Champ3" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle RadiusX="10" RadiusY="10" Margin="30,120,30,10" Fill="#242424"/>
+                    <TextBlock x:Name="Txt_champ3" Text="0 pts" Foreground="White" FontWeight="Medium" FontSize="13" FontFamily="Montserrat" Margin="20,125,20,15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+
+            </Grid>
+            <!--last game-->
+            <!--player icon-->
+            <Grid Grid.Row="5" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" >
+                <Rectangle RadiusX="20" RadiusY="20" Width="100" Height="100" Fill="#242424"/>
+                <Rectangle RadiusX="20" RadiusY="20" Width="95" Height="95">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="Image_GameChamp" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="0,85,0,0" Width="30" Height="15" Fill="#242424"/>
+                <TextBlock x:Name="Txt_GameLvl" Text="0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" Margin="20,85,20,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!--spell 1 icon-->
+            <Grid Grid.Row="5" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,10,0,0" >
+                <Rectangle RadiusX="20" RadiusY="20" Width="70" Height="70" Margin="0,20,0,0" Fill="#242424"/>
+                <Rectangle RadiusX="20" RadiusY="20" Width="65" Height="65" Margin="0,20,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="Image_spell1" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="30,85,30,0" Width="30" Height="15" Fill="#242424"/>
+                <TextBlock x:Name="Txt_spell1" Text="x0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" Margin="20,85,20,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!--spell 2 icon-->
+            <Grid Grid.Row="5" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="210,10,0,0" >
+                <Rectangle RadiusX="20" RadiusY="20" Width="70" Height="70" Margin="0,20,0,0" Fill="#242424"/>
+                <Rectangle RadiusX="20" RadiusY="20" Width="65" Height="65" Margin="0,20,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="Image_spell2" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="30,85,30,0" Width="30" Height="15" Fill="#242424"/>
+                <TextBlock x:Name="Txt_spell2" Text="x0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" Margin="20,85,20,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!--spell 3 icon-->
+            <Grid Grid.Row="5" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,10,0,0" >
+                <Rectangle RadiusX="20" RadiusY="20" Width="70" Height="70" Margin="0,20,0,0" Fill="#242424"/>
+                <Rectangle RadiusX="20" RadiusY="20" Width="65" Height="65" Margin="0,20,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="Image_spell3" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="30,85,30,0" Width="30" Height="15" Fill="#242424"/>
+                <TextBlock x:Name="Txt_spell3" Text="x0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" Margin="20,85,20,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!--spell 4 icon-->
+            <Grid Grid.Row="5" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="390,10,0,0" >
+                <Rectangle RadiusX="20" RadiusY="20" Width="70" Height="70" Margin="0,20,0,0" Fill="#242424"/>
+                <Rectangle RadiusX="20" RadiusY="20" Width="65" Height="65" Margin="0,20,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="Image_spell4" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="30,85,30,0" Width="30" Height="15" Fill="#242424"/>
+                <TextBlock x:Name="Txt_spell4" Text="x0" Foreground="White" FontWeight="Medium" FontSize="12" FontFamily="Montserrat" Margin="20,85,20,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!--Victory Timer kills deaths assist-->
+            <TextBlock Grid.Row="5" x:Name="Txt_Victory" Text="Victory" Foreground="White" FontWeight="Medium" FontSize="16" FontFamily="Montserrat" TextAlignment="Center" VerticalAlignment="Top" Margin="135,10,290,0" />
+            <TextBlock Grid.Row="5" x:Name="Txt_Timer" Text="00:00" Foreground="White" FontWeight="Medium" FontSize="16" FontFamily="Montserrat" TextAlignment="Center" VerticalAlignment="Top" Margin="225,10,200,0" />
+            <TextBlock Grid.Row="5" x:Name="Txt_Kda" Text="0 / 0 / 0" Foreground="White" FontWeight="Medium" FontSize="16" FontFamily="Montserrat" TextAlignment="Center" VerticalAlignment="Top" Margin="305,10,100,0" />
+            <TextBlock Grid.Row="5" x:Name="Txt_wards" Text="Score 0" Foreground="White" FontWeight="Medium" FontSize="16" FontFamily="Montserrat" TextAlignment="Center" VerticalAlignment="Top" Margin="405,10,20,0" />
+
+
+        </Grid>
+    </Border>
+</Window>

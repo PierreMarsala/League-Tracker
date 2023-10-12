@@ -1,0 +1,6 @@
+{
+  "API_KEY": "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX",
+  "RateLimit_Per10s": 20,
+  "RateLimit_Per10m": 200,
+  "DefaultUser": "HelloWorld"
+}

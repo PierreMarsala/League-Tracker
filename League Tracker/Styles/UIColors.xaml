@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--Background Colors-->
+    <Color x:Key="Border_Color1">#213555</Color>
+    <Color x:Key="Border_Color2">#4F709C</Color>
+    <Color x:Key="Border_Color3">#E5D283</Color>
+    
+    <Color x:Key="Background_Color1">#F0F0F0</Color>
+    <Color x:Key="Background_Color2">#FFFFFF</Color>
+
+    <!--Font Colors-->
+    <SolidColorBrush x:Key="Color1" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="Color2" Color="#4F709C"/>
+
+
+</ResourceDictionary>
